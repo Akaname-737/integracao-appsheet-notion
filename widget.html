@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Rádio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background-color: #f3f4f6;
+    }
+
+    .player-container {
+      margin-top: 10px;
+      background-color: #FFFFFF;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .title {
+      font-size: 22px;
+      margin: 10px 0;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .background-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .audio-overlay {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      background-color: transparent;
+      padding: 0;
+    }
+
+    /* Estilo para o botão de play/pause */
+    .play-pause-btn {
+      display: inline-block;
+      width: 59px;
+      height: 59px;
+      background-color: #FFFFFF;
+      color: white;
+      font-size: 30px;
+      border-radius: 50%;
+      line-height: 60px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      position: relative;
+      z-index: 2;
+    }
+
+    .play-pause-btn:hover {
+      background-color: #c4c4c4;
+    }
+
+    .play img,
+    .pause img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .pause {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="player-container">
+    <div class="title">Escute a Rádio ao Vivo</div>
+    <div class="image-container">
+      <!-- Link da imagem da Rádio -->
+      <img src="https://lh3.googleusercontent.com/JOcaHhRE4z2oqifnrxBsr6S4i1TXwoP7LAvrsQKQh2gDUwy5PM_3W9PAU0Pq7FQ=w0" alt="Logo da Rádio" class="background-image">
+      <div class="audio-overlay">
+        
+        <!-- Botão de Play/Pause -->
+        <div class="play-pause-btn" onclick="togglePlayPause()">
+          <span id="play-icon" class="play">
+            <img src="https://cdn-icons-png.flaticon.com/512/0/375.png" alt="Play">
+          </span>
+          <span id="pause-icon" class="pause">
+            <img src="https://cdn-icons-png.flaticon.com/512/16/16427.png" alt="Pause">
+          </span>
+        </div>
+
+        <!-- Círculo branco sobre a imagem de play/pause -->
+        <div class="circle-border"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Link do áudio ao vivo da Rádio -->
+  <audio id="audio-player" preload="auto">
+    <source src="https://str1.streamhostpg.com.br:8014/stream" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+  </audio>
+
+  <script>
+    const audio = document.getElementById("audio-player");
+    const playIcon = document.getElementById("play-icon");
+    const pauseIcon = document.getElementById("pause-icon");
+
+    function togglePlayPause() {
+      if (audio.paused) {
+        audio.play();
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "inline-block";
+      } else {
+        audio.pause();
+        playIcon.style.display = "inline-block";
+        pauseIcon.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
